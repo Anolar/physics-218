@@ -41,7 +41,7 @@ for i in range(0,rounds):
     # Random number to index LED and button arrays.
     side = random.randint(0,2)
 
-    # 
+    # Loop than runs each round. While system time is less than start time + round length
     while time.time()<endtime:
 
         # Sets the randomly determined LED high.
@@ -49,8 +49,8 @@ for i in range(0,rounds):
 
         # If the correct button is pressed in time:
         if gpio.input(buttons[side]) == False:
-            print('Correct Button pressed')
             score+=1 # Increment Score
+            print('Score:',score,'out of',rounds) # Prints score
             gpio.output(leds[side],0) # Set LED low.
             time.sleep(0.3) # Pause before begining next round.
             break # Begin next round
@@ -61,6 +61,6 @@ for i in range(0,rounds):
     gpio.output(leftled,0)
 
 
-print(score, "out of", rounds)
+print(score, 'out of', rounds)
 
 gpio.cleanup()

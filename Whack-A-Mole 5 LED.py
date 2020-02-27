@@ -2,8 +2,11 @@ import RPi.GPIO as gpio
 import time
 import random
 
-rounds = int(input('How many rounds to play? '))
-
+rounds = int(input('How many rounds would you like to play? '))
+round_length = float(input('How long would you like each round to be? Ex: 0.5 seconds. '))
+print('\nReady?')
+time.sleep(1.5)
+print('GO!')
 score = 0
 
 # Initialize I/O pins:
@@ -50,7 +53,7 @@ buttons = [button0, button1, button2, button3, button4]
 for i in range(0,rounds):
 
     # Gets current time, adds the length of the round to it.
-    endtime = time.time()+0.3
+    endtime = time.time()+round_length
     # Random number to index LED and button arrays.
     side = random.randint(0,4)
 
